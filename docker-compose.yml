@@ -1,0 +1,13 @@
+version: '2'
+services:
+  scrutiny:
+    image: henfri/opensprinkler:latest
+    container_name: opensprinkler
+#    privileged: true
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - /srv/Daten/dockerconfig/opensprinkler:/data
+    ports:
+      - 90:8080
+    restart: unless-stopped
