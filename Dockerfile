@@ -1,7 +1,5 @@
 FROM multiarch/alpine:amd64-latest-stable as base-img
 
-#forked from JohnStrunk/OpenSprinkler-RPi-docker
-
 ########################################
 FROM base-img as build-img
 RUN apk --no-cache add \
@@ -14,9 +12,8 @@ RUN apk --no-cache add \
 RUN wget https://github.com/OpenSprinkler/OpenSprinkler-Firmware/archive/master.zip && \
     unzip master.zip && \
     cd /OpenSprinkler-Firmware-master && \
-    ./build.sh -s ospi
-
-
+    echo "Building OpenSprinkler..." && \
+    g++ -o OpenSprinkler -DOSPI -std=c++14 main.cpp OpenSprinkler.cpp program.cpp opensprinkler_server.cpp utils.cpp weather.cpp gpio.cpp etherport.cpp mqtt.cpp -lpthread -lmosquitto 
 
 ########################################
 FROM base-img
