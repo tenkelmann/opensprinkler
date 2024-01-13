@@ -1,7 +1,7 @@
 version: '2'
 services:
   scrutiny:
-    image: makertorsten/opensprinkler:latest
+    image: makertorsten/opensprinkler:0.1
     container_name: opensprinkler
 #    privileged: true
     environment:
